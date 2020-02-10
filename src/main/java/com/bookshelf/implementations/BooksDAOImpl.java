@@ -151,7 +151,7 @@ public class BooksDAOImpl implements BooksDAO {
 			b.bookPublishedDate=rs.getDate(8);
 			b.bookLink=rs.getString(9);
 			b.imgLink=rs.getString(10);
-			System.out.println(b.imgLink);
+			
 			l.add(b);
 		}con.close();
 		}
