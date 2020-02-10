@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 import com.bookshelf.dao.LoginDAO;
 import com.bookshelf.implementations.LoginDAOImpl;
+import com.bookshelf.model.Logger;
 import com.bookshelf.model.Login;
 
 public class UserRegistration {
-
+	private static final Logger logg=Logger.getInstance();
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception {
 		@SuppressWarnings("unused")
@@ -16,16 +17,16 @@ public class UserRegistration {
 		
 		Login log=new Login();
 		
-		System.out.println("Enter the User Name :");
-		log.userName=s.nextLine();
-		System.out.println("Enter the E-Mail :");
-		log.eMail=s.nextLine();
-		System.out.println("Enter the Phone no :");
-		log.phoneNo=s.nextLong();
-		System.out.println("Enter the Preference Type :");
-		log.preferenceType=s.next();
-		System.out.println("Enter the Password :");
-		log.password=s.next();
+		logg.debug("Enter the User Name :");
+		log.setUserName(s.nextLine());
+		logg.debug("Enter the E-Mail :");
+		log.seteMail(s.nextLine());
+		logg.debug("Enter the Phone no :");
+		log.setPhoneNo(s.nextLong());
+		logg.debug("Enter the Preference Type :");
+		log.setPreferenceType(s.next());
+		logg.debug("Enter the Password :");
+		log.setPassword(s.next());
 		
 		li.newLogin(log);
 

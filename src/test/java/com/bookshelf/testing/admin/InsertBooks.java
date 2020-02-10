@@ -4,9 +4,11 @@ import java.sql.Date;
 import java.util.Scanner;
 import com.bookshelf.implementations.BooksDAOImpl;
 import com.bookshelf.model.Books;
+import com.bookshelf.model.Logger;
 
 
 public class InsertBooks {
+	private static final Logger log=Logger.getInstance();
 
 	public static void main(String[] args) throws Exception {
 		@SuppressWarnings("resource")
@@ -15,25 +17,25 @@ public class InsertBooks {
 		
 		Books b=new Books();
 
-		System.out.println("Enter the Book Name:");
-		b.bookName=s.nextLine();
-		System.out.println("Enter the Book Version:");
-		b.bookVersion=Integer.parseInt(s.next());
+		log.debug("Enter the Book Name:");
+		b.setBookName(s.nextLine());
+		log.debug("Enter the Book Version:");
+		b.setBookVersion(Integer.parseInt(s.next()));
 		s.nextLine();
-		System.out.println("Enter the Book Author:");
-		b.bookAuthor=s.nextLine();
-		System.out.println("Enter the Book Language:");
-		b.bookLanguage=s.nextLine();
-		System.out.println("Enter the Book Type:");
-		b.bookType=s.nextLine();
-		System.out.println("Enter the Book Publisher:");
-		b.bookPublisher=s.nextLine();
-		System.out.println("Enter the Book Published Date:");
-		b.bookPublishedDate=Date.valueOf(s.next());
-		System.out.println("Enter the Book Image :");
-		b.imgLink=s.nextLine();
-		System.out.println("Enter the Book Published Date:");
-		b.bookLink=s.nextLine();
+		log.debug("Enter the Book Author:");
+		b.setBookAuthor(s.nextLine());
+		log.debug("Enter the Book Language:");
+		b.setBookLanguage(s.nextLine());
+		log.debug("Enter the Book Type:");
+		b.setBookType(s.nextLine());
+		log.debug("Enter the Book Publisher:");
+		b.setBookPublisher(s.nextLine());
+		log.debug("Enter the Book Published Date:");
+		b.setBookPublishedDate(Date.valueOf(s.next()));
+		log.debug("Enter the Book Image :");
+		b.setImgLink(s.nextLine());
+		log.debug("Enter the Book Published Date:");
+		b.setBookLink(s.nextLine());
 		
 		bi.addBook(b);
 

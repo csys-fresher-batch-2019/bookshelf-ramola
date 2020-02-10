@@ -6,23 +6,27 @@ import java.sql.ResultSet;
 
 import com.bookshelf.dao.LoginDAO;
 import com.bookshelf.db.DbConnection;
+import com.bookshelf.model.Logger;
 import com.bookshelf.model.Login;
 
 public class LoginDAOImpl implements LoginDAO{
 
+	private static final Logger log=Logger.getInstance();
+
 	public void newLogin(Login ab) throws Exception {
+		
 		String query="insert into login(login_no,user_name,email,phone_no,preference_type,password)values (login_sqc.nextval,?,?,?,?,?)";
 		
 		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query))
 		{
-		pst.setString(1,ab.userName);
-		pst.setString(2,ab.eMail);
-		pst.setLong(3,ab.phoneNo);
-		pst.setString(4,ab.preferenceType);
-		pst.setString(5,ab.password);
+		pst.setString(1,ab.getUserName());
+		pst.setString(2,ab.geteMail());
+		pst.setLong(3,ab.getPhoneNo());
+		pst.setString(4,ab.getPreferenceType());
+		pst.setString(5,ab.getPassword());
 		
 		int rows=pst.executeUpdate();
-		System.out.println("No of rows inserted :"+rows);
+		log.debug("No of rows inserted :"+rows);
 		con.close();
 		}
 		catch(Exception e)

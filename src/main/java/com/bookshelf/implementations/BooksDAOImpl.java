@@ -1,5 +1,6 @@
 package com.bookshelf.implementations;
 import com.bookshelf.model.Books;
+import com.bookshelf.model.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import com.bookshelf.dao.BooksDAO;
 import com.bookshelf.db.DbConnection;
 
 public class BooksDAOImpl implements BooksDAO {
+	private static final Logger log=Logger.getInstance();
 	public List<Books> extractAuthorSpecificBooks(String bookAuthor) throws Exception 
 	{
 
@@ -22,23 +24,23 @@ public class BooksDAOImpl implements BooksDAO {
 		Statement stmt=con.createStatement()){
 
 		int rows=stmt.executeUpdate(query);
-		System.out.println("Author Specific books count :"+rows);
+		log.debug("Author Specific books count :"+rows);
 		
 		try(ResultSet rs=stmt.executeQuery(query)){
 				
 		while(rs.next())
 		{
 			Books b=new Books();
-			b.bookName=rs.getString(1);
-			b.bookVersion=rs.getInt(2);
-			b.bookAuthor=rs.getString(3);
-			b.bookLanguage=rs.getString(4);
-			b.bookRating=rs.getInt(5);
-			b.bookType=rs.getString(6);
-			b.bookPublisher=rs.getString(7);
-			b.bookPublishedDate=rs.getDate(8);
-			b.bookLink=rs.getString(9);
-			b.imgLink=rs.getString(10);
+			b.setBookName(rs.getString(1));
+			b.setBookVersion(rs.getInt(2));
+			b.setBookAuthor(rs.getString(3));
+			b.setBookLanguage(rs.getString(4));
+			b.setBookRating(rs.getInt(5));
+			b.setBookType(rs.getString(6));
+			b.setBookPublisher(rs.getString(7));
+			b.setBookPublishedDate(rs.getDate(8));
+			b.setBookLink(rs.getString(9));
+			b.setImgLink(rs.getString(10));
 			
 			l.add(b);
 		}con.close();
@@ -62,23 +64,23 @@ public class BooksDAOImpl implements BooksDAO {
 		Statement stmt=con.createStatement()){
 		
 			int rows=stmt.executeUpdate(query);
-		System.out.println("Type Specific books count :"+rows);
+		log.debug("Type Specific books count :"+rows);
 		
 		try(ResultSet rs=stmt.executeQuery(query)){
 		
 		while(rs.next())
 		{
 			Books b=new Books();
-			b.bookName=rs.getString(1);
-			b.bookVersion=rs.getInt(2);
-			b.bookAuthor=rs.getString(3);
-			b.bookLanguage=rs.getString(4);
-			b.bookRating=rs.getInt(5);
-			b.bookType=rs.getString(6);
-			b.bookPublisher=rs.getString(7);
-			b.bookPublishedDate=rs.getDate(8);
-			b.bookLink=rs.getString(9);
-			b.imgLink=rs.getString(10);
+			b.setBookName(rs.getString(1));
+			b.setBookVersion(rs.getInt(2));
+			b.setBookAuthor(rs.getString(3));
+			b.setBookLanguage(rs.getString(4));
+			b.setBookRating(rs.getInt(5));
+			b.setBookType(rs.getString(6));
+			b.setBookPublisher(rs.getString(7));
+			b.setBookPublishedDate(rs.getDate(8));
+			b.setBookLink(rs.getString(9));
+			b.setImgLink(rs.getString(10));
 			
 			l.add(b);
 		}con.close();
@@ -98,22 +100,22 @@ public class BooksDAOImpl implements BooksDAO {
 		try(Connection con=DbConnection.getConnection();Statement stmt=con.createStatement()){
 
 		int rows=stmt.executeUpdate(query);
-		System.out.println("Language Specific books count :"+rows);
+		log.debug("Language Specific books count :"+rows);
 		try(ResultSet rs=stmt.executeQuery(query)){
 		
 		while(rs.next())
 		{
 			Books b=new Books();
-			b.bookName=rs.getString(1);
-			b.bookVersion=rs.getInt(2);
-			b.bookAuthor=rs.getString(3);
-			b.bookLanguage=rs.getString(4);
-			b.bookRating=rs.getInt(5);
-			b.bookType=rs.getString(6);
-			b.bookPublisher=rs.getString(7);
-			b.bookPublishedDate=rs.getDate(8);
-			b.bookLink=rs.getString(9);
-			b.imgLink=rs.getString(10);
+			b.setBookName(rs.getString(1));
+			b.setBookVersion(rs.getInt(2));
+			b.setBookAuthor(rs.getString(3));
+			b.setBookLanguage(rs.getString(4));
+			b.setBookRating(rs.getInt(5));
+			b.setBookType(rs.getString(6));
+			b.setBookPublisher(rs.getString(7));
+			b.setBookPublishedDate(rs.getDate(8));
+			b.setBookLink(rs.getString(9));
+			b.setImgLink(rs.getString(10));
 			
 			l.add(b);
 		}con.close();
@@ -134,23 +136,23 @@ public class BooksDAOImpl implements BooksDAO {
 	List<Books> l=new ArrayList<Books>();
 	try(Connection con=DbConnection.getConnection();Statement stmt=con.createStatement()){
 		int rows=stmt.executeUpdate(query);
-		System.out.println("Most Popular Books :"+rows);
+		log.debug("Most Popular Books :"+rows);
 		
 		try(ResultSet rs=stmt.executeQuery(query)){
 		
 		while(rs.next())
 		{
 			Books b=new Books();
-			b.bookName=rs.getString(1);
-			b.bookVersion=rs.getInt(2);
-			b.bookAuthor=rs.getString(3);
-			b.bookLanguage=rs.getString(4);
-			b.bookRating=rs.getInt(5);
-			b.bookType=rs.getString(6);
-			b.bookPublisher=rs.getString(7);
-			b.bookPublishedDate=rs.getDate(8);
-			b.bookLink=rs.getString(9);
-			b.imgLink=rs.getString(10);
+			b.setBookName(rs.getString(1));
+			b.setBookVersion(rs.getInt(2));
+			b.setBookAuthor(rs.getString(3));
+			b.setBookLanguage(rs.getString(4));
+			b.setBookRating(rs.getInt(5));
+			b.setBookType(rs.getString(6));
+			b.setBookPublisher(rs.getString(7));
+			b.setBookPublishedDate(rs.getDate(8));
+			b.setBookLink(rs.getString(9));
+			b.setImgLink(rs.getString(10));
 			
 			l.add(b);
 		}con.close();
@@ -173,7 +175,7 @@ public class BooksDAOImpl implements BooksDAO {
 		{
 		
 		int rows=stmt.executeUpdate(query);
-		System.out.println("Today's Special Books :"+rows);
+		log.debug("Today's Special Books :"+rows);
 		
 		try(ResultSet rs=stmt.executeQuery(query);)
 		{
@@ -181,16 +183,16 @@ public class BooksDAOImpl implements BooksDAO {
 		while(rs.next())
 		{
 			Books b=new Books();
-			b.bookName=rs.getString(1);
-			b.bookVersion=rs.getInt(2);
-			b.bookAuthor=rs.getString(3);
-			b.bookLanguage=rs.getString(4);
-			b.bookRating=rs.getInt(5);
-			b.bookType=rs.getString(6);
-			b.bookPublisher=rs.getString(7);
-			b.bookPublishedDate=rs.getDate(8);
-			b.bookLink=rs.getString(9);
-			b.imgLink=rs.getString(10);
+			b.setBookName(rs.getString(1));
+			b.setBookVersion(rs.getInt(2));
+			b.setBookAuthor(rs.getString(3));
+			b.setBookLanguage(rs.getString(4));
+			b.setBookRating(rs.getInt(5));
+			b.setBookType(rs.getString(6));
+			b.setBookPublisher(rs.getString(7));
+			b.setBookPublishedDate(rs.getDate(8));
+			b.setBookLink(rs.getString(9));
+			b.setImgLink(rs.getString(10));
 			
 			l.add(b);
 		}con.close();
@@ -211,7 +213,7 @@ public class BooksDAOImpl implements BooksDAO {
 		{
 		
 		int rows=stmt.executeUpdate(query);
-		System.out.println("Today's Special Books :"+rows);
+		log.debug("Today's Special Books :"+rows);
 		
 		try(ResultSet rs=stmt.executeQuery(query);)
 		{
@@ -219,16 +221,16 @@ public class BooksDAOImpl implements BooksDAO {
 		while(rs.next())
 		{
 			Books b=new Books();
-			b.bookName=rs.getString(1);
-			b.bookVersion=rs.getInt(2);
-			b.bookAuthor=rs.getString(3);
-			b.bookLanguage=rs.getString(4);
-			b.bookRating=rs.getInt(5);
-			b.bookType=rs.getString(6);
-			b.bookPublisher=rs.getString(7);
-			b.bookPublishedDate=rs.getDate(8);
-			b.bookLink=rs.getString(9);
-			b.imgLink=rs.getString(10);
+			b.setBookName(rs.getString(1));
+			b.setBookVersion(rs.getInt(2));
+			b.setBookAuthor(rs.getString(3));
+			b.setBookLanguage(rs.getString(4));
+			b.setBookRating(rs.getInt(5));
+			b.setBookType(rs.getString(6));
+			b.setBookPublisher(rs.getString(7));
+			b.setBookPublishedDate(rs.getDate(8));
+			b.setBookLink(rs.getString(9));
+			b.setImgLink(rs.getString(10));
 			
 			l.add(b);
 		}con.close();
@@ -245,20 +247,20 @@ public class BooksDAOImpl implements BooksDAO {
 	public void addBook(Books ab) throws Exception {
 		String query="insert into books(book_id,book_name,book_version,book_author,book_language,book_type,book_publisher,book_published_date)values(BOOK_ID_SQC.nextval,lower(?),?,lower(?),?,?,?,?)";
 		
-		try(Connection con=DbConnection.getConnection())
+		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query);)
 		{
 		
-		PreparedStatement pst = con.prepareStatement(query);
-		pst.setString(1,ab.bookName);
-		pst.setInt(2,ab.bookVersion);
-		pst.setString(3,ab.bookAuthor);
-		pst.setString(4,ab.bookLanguage);
-		pst.setString(5,ab.bookType);
-		pst.setString(6,ab.bookPublisher);
-		pst.setDate(7,ab.bookPublishedDate);
+		
+		pst.setString(1,ab.getBookName());
+		pst.setInt(2,ab.getBookVersion());
+		pst.setString(3,ab.getBookAuthor());
+		pst.setString(4,ab.getBookLanguage());
+		pst.setString(5,ab.getBookType());
+		pst.setString(6,ab.getBookPublisher());
+		pst.setDate(7,ab.getBookPublishedDate());
 		
 		int rows=pst.executeUpdate();
-		System.out.println("No of rows inserted :"+rows);
+		log.debug("No of rows inserted :"+rows);
 		con.close();
 		}
 		catch(Exception e)
@@ -273,15 +275,14 @@ public class BooksDAOImpl implements BooksDAO {
 	public void updateBookLanguage(Books ab) throws Exception {
 		String query="update books set book_language=? where book_name=?";
 		
-		try(Connection con=DbConnection.getConnection())
+		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query))
 		{
 		
-		PreparedStatement pst = con.prepareStatement(query);
-		pst.setString(1, ab.bookLanguage);
-		pst.setString(2, ab.bookName);
+		pst.setString(1, ab.getBookLanguage());
+		pst.setString(2, ab.getBookName());
 		
 		int rows=pst.executeUpdate();
-		System.out.println("No of rows Updated :"+rows);
+		log.debug("No of rows Updated :"+rows);
 		con.close();
 		}
 		catch(Exception e)
@@ -297,16 +298,16 @@ public class BooksDAOImpl implements BooksDAO {
 		String query="delete from books where book_id=?";
 		
 
-		try(Connection con=DbConnection.getConnection())
+		try(Connection con=DbConnection.getConnection();PreparedStatement pstm = con.prepareStatement(sql);
+				PreparedStatement pst = con.prepareStatement(query))
 		{
-		PreparedStatement pstm = con.prepareStatement(sql);
-		PreparedStatement pst = con.prepareStatement(query);
-		pstm.setInt(1, ab.bookId);
-		pst.setInt(1, ab.bookId);
+		
+		pstm.setInt(1, ab.getBookId());
+		pst.setInt(1, ab.getBookId());
 		
 		int rows=pstm.executeUpdate();
 		pst.executeUpdate();
-		System.out.println("No of rows Deleted :"+rows);
+		log.debug("No of rows Deleted :"+rows);
 		
 		con.close();
 		}

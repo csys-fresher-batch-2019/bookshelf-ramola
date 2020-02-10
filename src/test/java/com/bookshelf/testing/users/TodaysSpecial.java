@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import com.bookshelf.implementations.BooksDAOImpl;
 import com.bookshelf.model.Books;
+import com.bookshelf.model.Logger;
 
 public class TodaysSpecial {
-
+	private static final Logger log=Logger.getInstance();
 	public static void main(String[] args) throws Exception {
 		BooksDAOImpl bi=new BooksDAOImpl();
 		
@@ -14,7 +15,7 @@ public class TodaysSpecial {
 		alb=bi.extractTodaysSpecial();
 		for(Books b:alb)
 		{
-			System.out.println(b.toString());
+			log.debug(b.toString());
 		}
 
 	}

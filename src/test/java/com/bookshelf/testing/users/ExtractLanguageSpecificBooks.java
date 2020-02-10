@@ -5,9 +5,12 @@ import java.util.Scanner;
 
 import com.bookshelf.implementations.BooksDAOImpl;
 import com.bookshelf.model.Books;
+import com.bookshelf.model.Logger;
 
 
 public class ExtractLanguageSpecificBooks {
+	private static final Logger log=Logger.getInstance();
+
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("resource")
@@ -15,9 +18,9 @@ public class ExtractLanguageSpecificBooks {
 		BooksDAOImpl bi=new BooksDAOImpl();
 
 
-		System.out.println("Enter the Language:");
+		log.debug("Enter the Language:");
 		String bookLanguage=s.next();
-		System.out.println("View books of Language-> "+bookLanguage);
+		log.debug("View books of Language-> "+bookLanguage);
 
 		List<Books> l=new ArrayList<Books>();
 		
@@ -26,7 +29,7 @@ public class ExtractLanguageSpecificBooks {
 		
 		for(Books b:l)
 		{
-			System.out.println(b.toString());
+			log.debug(b.toString());
 		}
 
 	}

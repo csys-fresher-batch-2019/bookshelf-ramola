@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import com.bookshelf.model.Books;
+import com.bookshelf.model.Logger;
 import com.bookshelf.implementations.BooksDAOImpl;
 
 
 public class ExtractAuthorSpecificBooks {
+	private static final Logger log=Logger.getInstance();
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
@@ -16,9 +18,9 @@ public class ExtractAuthorSpecificBooks {
 		BooksDAOImpl bi=new BooksDAOImpl();
 
 
-		System.out.println("Enter the Author name:");
+		log.debug("Enter the Author name:");
 		String bookAuthor=s.nextLine();
-		System.out.println("View books of Author-> "+bookAuthor);
+		log.debug("View books of Author-> "+bookAuthor);
 
 		List<Books> l=new ArrayList<Books>();
 		

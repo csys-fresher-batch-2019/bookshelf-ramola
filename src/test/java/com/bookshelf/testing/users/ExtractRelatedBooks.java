@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import com.bookshelf.model.Books;
+import com.bookshelf.model.Logger;
 import com.bookshelf.implementations.BooksDAOImpl;
 
 public class ExtractRelatedBooks {
+	private static final Logger log=Logger.getInstance();
 
 	public static void main(String[] args) throws Exception {
 		@SuppressWarnings("resource")
@@ -14,7 +16,7 @@ public class ExtractRelatedBooks {
 		BooksDAOImpl bi=new BooksDAOImpl();
 
 
-		System.out.println("Enter the related book names:");
+		log.debug("Enter the related book names:");
 		String bookName=s.nextLine();
 		List<Books> l=new ArrayList<Books>();
 		
@@ -23,7 +25,7 @@ public class ExtractRelatedBooks {
 		
 		for(Books b:l)
 		{
-			System.out.println(b.toString());
+			log.debug(b.toString());
 		}
 
 
