@@ -39,15 +39,13 @@ public class LoginDAOImpl implements LoginDAO{
 		// TODO Auto-generated method stub
 		String query="select email,password from login where email=? and password=?";
 		
-		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query))
+		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query);ResultSet rs=pst.executeQuery();)
 		{
 		
 		pst.setString(1,eMail);
 		pst.setString(2,password);
 
-		ResultSet rs=pst.executeQuery();
-		
-        String s=null;
+		String s=null;
 		if(rs.next())
 		{
 			s="success";
