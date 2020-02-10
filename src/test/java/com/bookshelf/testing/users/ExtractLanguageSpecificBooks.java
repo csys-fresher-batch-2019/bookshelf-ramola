@@ -3,13 +3,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.bookshelf.Books;
 import com.bookshelf.implementations.BooksDAOImpl;
+import com.bookshelf.model.Books;
 
 
 public class ExtractLanguageSpecificBooks {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
+		@SuppressWarnings("resource")
 		Scanner s=new Scanner(System.in);
 		BooksDAOImpl bi=new BooksDAOImpl();
 

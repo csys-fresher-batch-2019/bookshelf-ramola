@@ -1,9 +1,8 @@
 package com.bookshelf.testing.admin;
 
 import java.util.Scanner;
-
-import com.bookshelf.Books;
 import com.bookshelf.implementations.BooksDAOImpl;
+import com.bookshelf.model.Books;
 
 public class UpdateBookLanguage {
 

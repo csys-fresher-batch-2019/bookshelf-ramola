@@ -3,13 +3,13 @@ package com.bookshelf.testing.users;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import com.bookshelf.Books;
+import com.bookshelf.model.Books;
 import com.bookshelf.implementations.BooksDAOImpl;
 
 public class ExtractRelatedBooks {
 
 	public static void main(String[] args) throws Exception {
+		@SuppressWarnings("resource")
 		Scanner s=new Scanner(System.in);
 		BooksDAOImpl bi=new BooksDAOImpl();
 

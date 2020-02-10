@@ -2,8 +2,7 @@ package com.bookshelf.testing.users;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.bookshelf.Books;
+import com.bookshelf.model.Books;
 import com.bookshelf.implementations.BooksDAOImpl;
 
 

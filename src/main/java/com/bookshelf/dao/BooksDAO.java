@@ -1,8 +1,7 @@
 package com.bookshelf.dao;
-
+import com.bookshelf.model.Books;
 import java.util.List;
 
-import com.bookshelf.Books;
 
 public interface BooksDAO {
 	List<Books> extractAuthorSpecificBooks(String bookAuthor) throws Exception;

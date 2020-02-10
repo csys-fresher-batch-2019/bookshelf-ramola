@@ -2,14 +2,14 @@ package com.bookshelf.testing.admin;
 
 import java.sql.Date;
 import java.util.Scanner;
-
-import com.bookshelf.Books;
 import com.bookshelf.implementations.BooksDAOImpl;
+import com.bookshelf.model.Books;
 
 
 public class InsertBooks {
 
 	public static void main(String[] args) throws Exception {
+		@SuppressWarnings("resource")
 		Scanner s=new Scanner(System.in);
 		BooksDAOImpl bi=new BooksDAOImpl();
 		
@@ -30,6 +30,10 @@ public class InsertBooks {
 		b.bookPublisher=s.nextLine();
 		System.out.println("Enter the Book Published Date:");
 		b.bookPublishedDate=Date.valueOf(s.next());
+		System.out.println("Enter the Book Image :");
+		b.imgLink=s.nextLine();
+		System.out.println("Enter the Book Published Date:");
+		b.bookLink=s.nextLine();
 		
 		bi.addBook(b);
 
