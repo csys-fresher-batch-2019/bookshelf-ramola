@@ -24,7 +24,7 @@ public class ExtractTypeSpecificBook {
 		
 		for(Books b:l)
 		{
-			log.debug(b.toString());
+			log.debug(b);
 		}
 
 

@@ -29,7 +29,7 @@ public class ExtractAuthorSpecificBooks {
 		
 		for(Books b:l)
 		{
-			System.out.println(b.toString());
+			System.out.println(b);
 		}
 
 	}

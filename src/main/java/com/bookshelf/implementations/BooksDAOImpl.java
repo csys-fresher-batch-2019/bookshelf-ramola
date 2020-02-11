@@ -17,17 +17,24 @@ public class BooksDAOImpl implements BooksDAO {
 	public List<Books> extractAuthorSpecificBooks(String bookAuthor) throws Exception 
 	{
 
-		String query="select book_name,book_version,book_author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_author=lower('"+bookAuthor+"')";
+		String query="select book_name,book_version,book_author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_author=lower(?)";
 
 		List<Books> l=new ArrayList<Books>();
-		try(Connection con=DbConnection.getConnection();
-		Statement stmt=con.createStatement()){
-
-		int rows=stmt.executeUpdate(query);
-		log.debug("Author Specific books count :"+rows);
+		Connection con=null;
+		ResultSet rs=null;
+		try
+		{
+		con=DbConnection.getConnection();
+				PreparedStatement pst = con.prepareStatement(query);
+				pst.setString(1,bookAuthor);
+			 rs=pst.executeQuery();
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		
-		try(ResultSet rs=stmt.executeQuery(query)){
-				
+		
+		
 		while(rs.next())
 		{
 			Books b=new Books();
@@ -44,11 +51,8 @@ public class BooksDAOImpl implements BooksDAO {
 			
 			l.add(b);
 		}con.close();
-		}
-		}catch(Exception e)
-		{
-			
-		}
+		
+		
 		return (l);
 	
 	}

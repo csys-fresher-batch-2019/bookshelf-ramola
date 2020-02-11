@@ -29,7 +29,7 @@ public class ExtractLanguageSpecificBooks {
 		
 		for(Books b:l)
 		{
-			log.debug(b.toString());
+			log.debug(b);
 		}
 
 	}

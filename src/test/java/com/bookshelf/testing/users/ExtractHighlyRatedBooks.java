@@ -18,7 +18,7 @@ public class ExtractHighlyRatedBooks {
 		alb=bi.extractHighlyRatedBooks();
 		for(Books b:alb)
 		{
-			log.debug(b.toString());
+			log.debug(b);
 		}
 
 	}

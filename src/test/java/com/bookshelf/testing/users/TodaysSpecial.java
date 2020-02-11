@@ -15,7 +15,7 @@ public class TodaysSpecial {
 		alb=bi.extractTodaysSpecial();
 		for(Books b:alb)
 		{
-			log.debug(b.toString());
+			log.debug(b);
 		}
 
 	}
