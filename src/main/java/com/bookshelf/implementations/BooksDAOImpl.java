@@ -60,18 +60,17 @@ public class BooksDAOImpl implements BooksDAO {
 
 	public List<Books> extractTypeSpecificBooks(String bookType) throws Exception {
 
-		String query="select book_name,book_version,book_author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_Type='"+bookType+"'";
+		String query="select book_name,book_version,book_author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_Type=?";
 		
 		List<Books> l=new ArrayList<Books>();
 
 		try(
 		Connection con=DbConnection.getConnection();
-		Statement stmt=con.createStatement()){
+				PreparedStatement pst = con.prepareStatement(query)){
 		
-			int rows=stmt.executeUpdate(query);
-		log.debug("Type Specific books count :"+rows);
-		
-		try(ResultSet rs=stmt.executeQuery(query)){
+			pst.setString(1,bookType);
+	
+		try(ResultSet rs=pst.executeQuery()){
 		
 		while(rs.next())
 		{
@@ -102,11 +101,11 @@ public class BooksDAOImpl implements BooksDAO {
 
 		String query="select book_name,book_version,book_author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_Language='"+bookLanguage+"'";
 		List<Books> l=new ArrayList<Books>();
-		try(Connection con=DbConnection.getConnection();Statement stmt=con.createStatement()){
+		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query)){
 
-		int rows=stmt.executeUpdate(query);
+		int rows=pst.executeUpdate(query);
 		log.debug("Language Specific books count :"+rows);
-		try(ResultSet rs=stmt.executeQuery(query)){
+		try(ResultSet rs=pst.executeQuery()){
 		
 		while(rs.next())
 		{
@@ -139,11 +138,11 @@ public class BooksDAOImpl implements BooksDAO {
 		
 	String query="select book_name,book_version,book_author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_rating>=4";
 	List<Books> l=new ArrayList<Books>();
-	try(Connection con=DbConnection.getConnection();Statement stmt=con.createStatement()){
-		int rows=stmt.executeUpdate(query);
+	try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query)){
+		int rows=pst.executeUpdate(query);
 		log.debug("Most Popular Books :"+rows);
 		
-		try(ResultSet rs=stmt.executeQuery(query)){
+		try(ResultSet rs=pst.executeQuery()){
 		
 		while(rs.next())
 		{
@@ -176,13 +175,13 @@ public class BooksDAOImpl implements BooksDAO {
 		String query="select book_name,book_version,book_Author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where trunc(book_uploaded_on)=trunc(sysdate)";
 		List<Books> l=new ArrayList<Books>();
 
-		try(Connection con=DbConnection.getConnection();Statement stmt=con.createStatement())
+		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query))
 		{
 		
-		int rows=stmt.executeUpdate(query);
+		int rows=pst.executeUpdate(query);
 		log.debug("Today's Special Books :"+rows);
 		
-		try(ResultSet rs=stmt.executeQuery(query);)
+		try(ResultSet rs=pst.executeQuery();)
 		{
 		
 		while(rs.next())
@@ -214,13 +213,13 @@ public class BooksDAOImpl implements BooksDAO {
 		String query="select book_name,book_version,book_Author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_name like '%"+ bookName+"%'";
 		List<Books> l=new ArrayList<Books>();
 
-		try(Connection con=DbConnection.getConnection();Statement stmt=con.createStatement())
+		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query))
 		{
 		
-		int rows=stmt.executeUpdate(query);
-		log.debug("Today's Special Books :"+rows);
+		int rows=pst.executeUpdate(query);
+		log.debug("Related Books :"+rows);
 		
-		try(ResultSet rs=stmt.executeQuery(query);)
+		try(ResultSet rs=pst.executeQuery(query);)
 		{
 		
 		while(rs.next())
