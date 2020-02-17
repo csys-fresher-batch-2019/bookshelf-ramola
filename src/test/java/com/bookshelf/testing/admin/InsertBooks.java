@@ -32,10 +32,11 @@ public class InsertBooks {
 		b.setBookPublisher(s.nextLine());
 		log.debug("Enter the Book Published Date:");
 		b.setBookPublishedDate(Date.valueOf(s.next()));
-		log.debug("Enter the Book Image :");
-		b.setImgLink(s.nextLine());
-		log.debug("Enter the Book Published Date:");
+		log.debug("Enter the Book pdf :");
 		b.setBookLink(s.nextLine());
+		s.nextLine();
+		log.debug("Enter the Book Image");
+		b.setImgLink(s.nextLine());
 		
 		bi.addBook(b);
 

@@ -249,9 +249,10 @@ public class BooksDAOImpl implements BooksDAO {
 	}
 
 	public void addBook(Books ab) throws Exception {
-		String query="insert into books(book_id,book_name,book_version,book_author,book_language,book_type,book_publisher,book_published_date)values(BOOK_ID_SQC.nextval,lower(?),?,lower(?),?,?,?,?)";
+		String query="insert into books(book_id,book_name,book_version,book_author,book_language,book_type,book_publisher,book_published_date,booklink,imglink)values(BOOK_ID_SQC.nextval,lower(?),?,lower(?),?,?,?,?,?,?)";
 		
-		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query);)
+		try(Connection con=DbConnection.getConnection();
+				PreparedStatement pst = con.prepareStatement(query);)
 		{
 		
 		
@@ -262,13 +263,17 @@ public class BooksDAOImpl implements BooksDAO {
 		pst.setString(5,ab.getBookType());
 		pst.setString(6,ab.getBookPublisher());
 		pst.setDate(7,ab.getBookPublishedDate());
+		pst.setString(8, ab.getBookLink());
+		pst.setString(9, ab.getImgLink());
 		
 		int rows=pst.executeUpdate();
 		log.debug("No of rows inserted :"+rows);
-		con.close();
+		
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
+			throw new Exception("Unable to insert book");
 			
 		}
 
@@ -302,14 +307,15 @@ public class BooksDAOImpl implements BooksDAO {
 		String query="delete from books where book_id=?";
 		
 
-		try(Connection con=DbConnection.getConnection();PreparedStatement pstm = con.prepareStatement(sql);
+		try(Connection con=DbConnection.getConnection();
+				PreparedStatement pstm = con.prepareStatement(sql);
 				PreparedStatement pst = con.prepareStatement(query))
 		{
 		
 		pstm.setInt(1, ab.getBookId());
 		pst.setInt(1, ab.getBookId());
 		
-		int rows=pstm.executeUpdate();
+		int rows=pst.executeUpdate();
 		pst.executeUpdate();
 		log.debug("No of rows Deleted :"+rows);
 		
