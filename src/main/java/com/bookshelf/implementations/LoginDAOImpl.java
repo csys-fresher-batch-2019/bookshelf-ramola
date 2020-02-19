@@ -62,14 +62,14 @@ public class LoginDAOImpl implements LoginDAO{
 		}
 		}
 		catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		con.close();
 		}
 		
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			
 		}
 		System.out.println(s);
 

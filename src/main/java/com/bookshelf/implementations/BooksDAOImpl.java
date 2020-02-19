@@ -272,7 +272,7 @@ public class BooksDAOImpl implements BooksDAO {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			
 			throw new Exception("Unable to insert book");
 			
 		}
