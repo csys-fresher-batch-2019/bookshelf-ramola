@@ -3,7 +3,7 @@ package com.bookshelf.testing.admin;
 import java.sql.Date;
 import java.util.Scanner;
 
-import org.jdbi.v3.core.Jdbi;
+//import org.jdbi.v3.core.Jdbi;
 
 import com.bookshelf.dao.BooksDAO;
 import com.bookshelf.db.DbConnection;
@@ -14,15 +14,17 @@ import com.bookshelf.model.Logger;
 
 public class InsertBooks {
 	private static final Logger log=Logger.getInstance();
-	static Jdbi jdbi=DbConnection.getJdbi();
-	static BooksDAO bookDAO=jdbi.onDemand(BooksDAO.class);
-
+	//static Jdbi jdbi=DbConnection.getJdbi();
+	//static BooksDAO bookDAO=jdbi.onDemand(BooksDAO.class);
+	BooksDAOImpl bi=new BooksDAOImpl();
+	
 	public static void main(String[] args) throws Exception {
 		@SuppressWarnings("resource")
 		Scanner s=new Scanner(System.in);
 		//BooksDAOImpl bi=new BooksDAOImpl();
 		
 		Books b=new Books();
+		BooksDAOImpl bi=new BooksDAOImpl();
 
 		log.debug("Enter the Book Name:");
 		b.setBookName(s.nextLine());
@@ -45,7 +47,7 @@ public class InsertBooks {
 		log.debug("Enter the Book Image");
 		b.setImgLink(s.nextLine());
 		
-		bookDAO.addBook(b);
+		bi.addBook(b);
 
 	}
 
