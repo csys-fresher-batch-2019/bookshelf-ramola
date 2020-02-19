@@ -17,7 +17,9 @@ public class TodaysSpecial {
 		{
 			log.debug(b);
 		}
-
+		
+		
 	}
+	
 
 }

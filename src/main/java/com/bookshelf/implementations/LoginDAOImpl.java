@@ -38,14 +38,19 @@ public class LoginDAOImpl implements LoginDAO{
 	public String userLoginValidation(String eMail,String password) throws Exception {
 		// TODO Auto-generated method stub
 		String query="select email,password from login where email=? and password=?";
+		String s=null;
 		
-		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query);ResultSet rs=pst.executeQuery();)
+		try(Connection con=DbConnection.getConnection();
+				PreparedStatement pst = con.prepareStatement(query);)
+				
 		{
 		
-		pst.setString(1,eMail);
-		pst.setString(2,password);
-
-		String s=null;
+			pst.setString(1,eMail);
+			pst.setString(2,password);
+		System.out.println(eMail);
+		System.out.println(password);
+		try(ResultSet rs=pst.executeQuery();)
+		{
 		if(rs.next())
 		{
 			s="success";
@@ -55,16 +60,21 @@ public class LoginDAOImpl implements LoginDAO{
 		{
 			s="failure";
 		}
-		con.close();
-		
-		return(s);
 		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		con.close();
+		}
+		
 		catch(Exception e)
 		{
-			
+			e.printStackTrace();
 		}
-		return null;
+		System.out.println(s);
+
 		
+		return(s);
 	}
 
 }
