@@ -31,7 +31,7 @@ public class LoginDAOImpl implements LoginDAO{
 		}
 		catch(Exception e)
 		{
-			
+			e.printStackTrace();
 		}
 	}
 
@@ -49,32 +49,39 @@ public class LoginDAOImpl implements LoginDAO{
 			pst.setString(2,password);
 		System.out.println(eMail);
 		System.out.println(password);
-		try(ResultSet rs=pst.executeQuery();)
+		if(eMail.equals("admin@gmail.com")&&password.equals("admin"))
 		{
-		if(rs.next())
-		{
-			s="success";
+			s="admin";
 		}
-		
 		else
-		{
-			s="failure";
-		}
-		}
-		catch (Exception e) {
-
-		}
-		con.close();
-		}
+		{	
+			try(ResultSet rs=pst.executeQuery();)
+			{
+				if(rs.next())
+				{
+					s="success";
+				}
 		
+				else
+				{
+					s="failure";
+				}
+			}
+			catch (Exception e) {
+
+				}
+			con.close();
+			
+		}}
 		catch(Exception e)
 		{
 			
 		}
+		
 		System.out.println(s);
 
 		
 		return(s);
-	}
+}}
 
-}
+

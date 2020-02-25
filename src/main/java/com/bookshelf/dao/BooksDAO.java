@@ -24,6 +24,8 @@ public interface BooksDAO {
 	//@SqlQuery("select book_name,book_version,book_author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_rating>=4")
 	List<Books> extractHighlyRatedBooks()throws Exception;
 	
+	List<Books> viewAllBooks()throws Exception;
+	
 	//@SqlQuery("select book_name,book_version,book_Author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where trunc(book_uploaded_on)=trunc(sysdate)")	
 	List<Books> extractTodaysSpecial()throws Exception;
 	

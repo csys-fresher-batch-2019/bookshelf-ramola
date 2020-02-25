@@ -12,7 +12,8 @@ import java.util.List;
 import com.bookshelf.dao.BooksDAO;
 import com.bookshelf.db.DbConnection;
 
-public class BooksDAOImpl implements BooksDAO {
+public class BooksDAOImpl implements BooksDAO 
+{
 	private static final Logger log=Logger.getInstance();
 	public List<Books> extractAuthorSpecificBooks(String bookAuthor) throws Exception 
 	{
@@ -21,42 +22,42 @@ public class BooksDAOImpl implements BooksDAO {
 
 		List<Books> l=new ArrayList<Books>();
 		try
-		(
-				Connection con=DbConnection.getConnection();
-				PreparedStatement pst = con.prepareStatement(query)){
-				pst.setString(1,bookAuthor);
-				try(
-						ResultSet rs=pst.executeQuery())
+			(Connection con=DbConnection.getConnection();
+			PreparedStatement pst = con.prepareStatement(query))
+		{
+					pst.setString(1,bookAuthor);
+				try(ResultSet rs=pst.executeQuery())
 				{
 		
 		
 		
 		
-		while(rs.next())
-		{
-			Books b=new Books();
-			b.setBookName(rs.getString(1));
-			b.setBookVersion(rs.getInt(2));
-			b.setBookAuthor(rs.getString(3));
-			b.setBookLanguage(rs.getString(4));
-			b.setBookRating(rs.getInt(5));
-			b.setBookType(rs.getString(6));
-			b.setBookPublisher(rs.getString(7));
-			b.setBookPublishedDate(rs.getDate(8));
-			b.setBookLink(rs.getString(9));
-			b.setImgLink(rs.getString(10));
+					while(rs.next())
+					{
+						Books b=new Books();
+						b.setBookName(rs.getString(1));
+						b.setBookVersion(rs.getInt(2));
+						b.setBookAuthor(rs.getString(3));
+						b.setBookLanguage(rs.getString(4));
+						b.setBookRating(rs.getInt(5));
+						b.setBookType(rs.getString(6));
+						b.setBookPublisher(rs.getString(7));
+						b.setBookPublishedDate(rs.getDate(8));
+						b.setBookLink(rs.getString(9));
+						b.setImgLink(rs.getString(10));
 			
-			l.add(b);
-		}con.close();
+						l.add(b);
+					}con.close();
 				}
-				}catch (Exception e) {
+		 }catch (Exception e) 
+			{
 					// TODO: handle exception
 					
-				}
+			}
 		
 		return (l);
 	
-	}
+}
 
 	public List<Books> extractTypeSpecificBooks(String bookType) throws Exception {
 
@@ -99,12 +100,14 @@ public class BooksDAOImpl implements BooksDAO {
 
 	public List<Books> extractLanguageSpecificBooks(String bookLanguage) throws Exception {
 
-		String query="select book_name,book_version,book_author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_Language='"+bookLanguage+"'";
+		String query="select book_name,book_version,book_author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_Language=?";
 		List<Books> l=new ArrayList<Books>();
-		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query)){
+		try(Connection con=DbConnection.getConnection();
+				PreparedStatement pst = con.prepareStatement(query))
+		{
 
-		int rows=pst.executeUpdate(query);
-		log.debug("Language Specific books count :"+rows);
+			pst.setString(1,bookLanguage);
+
 		try(ResultSet rs=pst.executeQuery()){
 		
 		while(rs.next())
@@ -210,16 +213,14 @@ public class BooksDAOImpl implements BooksDAO {
 			}
 	public List<Books> extractRelatedBooks(String bookName) throws Exception {
 		
-		String query="select book_name,book_version,book_Author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_name like '%"+ bookName+"%'";
+		String query="select book_name,book_version,book_Author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books where book_name like ?";
 		List<Books> l=new ArrayList<Books>();
 
 		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query))
 		{
-		
-		int rows=pst.executeUpdate(query);
-		log.debug("Related Books :"+rows);
-		
-		try(ResultSet rs=pst.executeQuery(query);)
+			pst.setString(1,"%"+bookName+"%");
+
+		try(ResultSet rs=pst.executeQuery();)
 		{
 		
 		while(rs.next())
@@ -326,6 +327,43 @@ public class BooksDAOImpl implements BooksDAO {
 			
 		}
 			
+	}
+
+	
+	public List<Books> viewAllBooks() throws Exception {
+		String query="select book_name,book_version,book_author,book_language,book_rating,book_type,book_publisher,book_published_date,booklink,imglink from books ";
+		List<Books> l=new ArrayList<Books>();
+		try(Connection con=DbConnection.getConnection();PreparedStatement pst = con.prepareStatement(query)){
+			int rows=pst.executeUpdate(query);
+			log.debug("Total Books :"+rows);
+			
+			try(ResultSet rs=pst.executeQuery()){
+			
+			while(rs.next())
+			{
+				Books b=new Books();
+				b.setBookName(rs.getString(1));
+				b.setBookVersion(rs.getInt(2));
+				b.setBookAuthor(rs.getString(3));
+				b.setBookLanguage(rs.getString(4));
+				b.setBookRating(rs.getInt(5));
+				b.setBookType(rs.getString(6));
+				b.setBookPublisher(rs.getString(7));
+				b.setBookPublishedDate(rs.getDate(8));
+				b.setBookLink(rs.getString(9));
+				b.setImgLink(rs.getString(10));
+				
+				l.add(b);
+			}con.close();
+			}
+			
+		}catch(Exception e)
+		{
+			
+			}
+
+		return (l);
+		
 	}
 
 
